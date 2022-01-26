@@ -16,6 +16,7 @@
 		B777149827A0E6BD00C5CDC8 /* SelfiegramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777149727A0E6BD00C5CDC8 /* SelfiegramTests.swift */; };
 		B77714A227A0E6BD00C5CDC8 /* SelfiegramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714A127A0E6BD00C5CDC8 /* SelfiegramUITests.swift */; };
 		B77714A427A0E6BD00C5CDC8 /* SelfiegramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714A327A0E6BD00C5CDC8 /* SelfiegramUITestsLaunchTests.swift */; };
+		B77714B127A0ED4D00C5CDC8 /* SelfieStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714B027A0ED4D00C5CDC8 /* SelfieStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B777149D27A0E6BD00C5CDC8 /* SelfiegramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SelfiegramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B77714A127A0E6BD00C5CDC8 /* SelfiegramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfiegramUITests.swift; sourceTree = "<group>"; };
 		B77714A327A0E6BD00C5CDC8 /* SelfiegramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfiegramUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B77714B027A0ED4D00C5CDC8 /* SelfieStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				B777148227A0E6BC00C5CDC8 /* SceneDelegate.swift */,
 				B777148427A0E6BC00C5CDC8 /* ViewController.swift */,
 				B777148627A0E6BC00C5CDC8 /* Main.storyboard */,
+				B77714B027A0ED4D00C5CDC8 /* SelfieStore.swift */,
 				B777148927A0E6BD00C5CDC8 /* Assets.xcassets */,
 				B777148B27A0E6BD00C5CDC8 /* LaunchScreen.storyboard */,
 				B777148E27A0E6BD00C5CDC8 /* Info.plist */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B777148527A0E6BC00C5CDC8 /* ViewController.swift in Sources */,
+				B77714B127A0ED4D00C5CDC8 /* SelfieStore.swift in Sources */,
 				B777148127A0E6BC00C5CDC8 /* AppDelegate.swift in Sources */,
 				B777148327A0E6BC00C5CDC8 /* SceneDelegate.swift in Sources */,
 			);
