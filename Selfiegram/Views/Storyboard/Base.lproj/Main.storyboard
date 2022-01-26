@@ -12,6 +12,7 @@
         <scene sceneID="kS8-M0-hIP">
             <objects>
                 <navigationController id="cGf-RX-aFg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="px1-VZ-oJX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dvT-db-YsD">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,7 +28,7 @@
         <!--SelfieDetail-->
         <scene sceneID="fsH-OU-G83">
             <objects>
-                <viewController title="SelfieDetail" id="L6P-zF-Bai" sceneMemberID="viewController">
+                <viewController title="SelfieDetail" id="L6P-zF-Bai" customClass="DetailViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SiD-LQ-PMf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,13 +44,13 @@
         <!--SelfiesList-->
         <scene sceneID="gqN-du-Stl">
             <objects>
-                <tableViewController title="SelfiesList" clearsSelectionOnViewWillAppear="NO" id="SXb-m5-RWR" sceneMemberID="viewController">
+                <tableViewController title="SelfiesList" clearsSelectionOnViewWillAppear="NO" id="SXb-m5-RWR" customClass="SelfieListViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hEK-hX-ykH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WOe-kh-W9S">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="WOe-kh-W9S">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WOe-kh-W9S" id="sFG-nP-Lnh">
@@ -65,7 +66,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Selfies" id="eeh-M6-Kvn"/>
                     <connections>
-                        <segue destination="cGf-RX-aFg" kind="showDetail" id="ohc-HP-QX2"/>
+                        <segue destination="cGf-RX-aFg" kind="show" id="iJJ-Cj-946"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UY3-s6-C3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -99,11 +100,11 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1B-fA-YLa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="623" y="-15"/>
+            <point key="canvasLocation" x="487" y="31"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xwh-Hw-Qvo"/>
+        <segue reference="iJJ-Cj-946"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
