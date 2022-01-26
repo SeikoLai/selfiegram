@@ -103,11 +103,10 @@
 			children = (
 				B777148027A0E6BC00C5CDC8 /* AppDelegate.swift */,
 				B777148227A0E6BC00C5CDC8 /* SceneDelegate.swift */,
-				B777148427A0E6BC00C5CDC8 /* ViewController.swift */,
-				B777148627A0E6BC00C5CDC8 /* Main.storyboard */,
-				B77714B027A0ED4D00C5CDC8 /* SelfieStore.swift */,
+				B77714B927A0F60D00C5CDC8 /* Controllers */,
+				B77714B727A0F5EE00C5CDC8 /* Views */,
+				B77714B627A0F5E200C5CDC8 /* Models */,
 				B777148927A0E6BD00C5CDC8 /* Assets.xcassets */,
-				B777148B27A0E6BD00C5CDC8 /* LaunchScreen.storyboard */,
 				B777148E27A0E6BD00C5CDC8 /* Info.plist */,
 			);
 			path = Selfiegram;
@@ -128,6 +127,39 @@
 				B77714A327A0E6BD00C5CDC8 /* SelfiegramUITestsLaunchTests.swift */,
 			);
 			path = SelfiegramUITests;
+			sourceTree = "<group>";
+		};
+		B77714B627A0F5E200C5CDC8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B77714B027A0ED4D00C5CDC8 /* SelfieStore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B77714B727A0F5EE00C5CDC8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B77714B827A0F5F600C5CDC8 /* Storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B77714B827A0F5F600C5CDC8 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				B777148627A0E6BC00C5CDC8 /* Main.storyboard */,
+				B777148B27A0E6BD00C5CDC8 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		B77714B927A0F60D00C5CDC8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B777148427A0E6BC00C5CDC8 /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
