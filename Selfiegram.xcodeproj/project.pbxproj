@@ -17,6 +17,7 @@
 		B77714A227A0E6BD00C5CDC8 /* SelfiegramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714A127A0E6BD00C5CDC8 /* SelfiegramUITests.swift */; };
 		B77714A427A0E6BD00C5CDC8 /* SelfiegramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714A327A0E6BD00C5CDC8 /* SelfiegramUITestsLaunchTests.swift */; };
 		B77714B127A0ED4D00C5CDC8 /* SelfieStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714B027A0ED4D00C5CDC8 /* SelfieStore.swift */; };
+		B77714BB27A0FF8800C5CDC8 /* SelfieStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714BA27A0FF8800C5CDC8 /* SelfieStoreTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B77714A127A0E6BD00C5CDC8 /* SelfiegramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfiegramUITests.swift; sourceTree = "<group>"; };
 		B77714A327A0E6BD00C5CDC8 /* SelfiegramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfiegramUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B77714B027A0ED4D00C5CDC8 /* SelfieStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieStore.swift; sourceTree = "<group>"; };
+		B77714BA27A0FF8800C5CDC8 /* SelfieStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelfieStoreTest.swift; path = SelfiegramTests/SelfieStoreTest.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		B777149627A0E6BD00C5CDC8 /* SelfiegramTests */ = {
 			isa = PBXGroup;
 			children = (
+				B77714BA27A0FF8800C5CDC8 /* SelfieStoreTest.swift */,
 				B777149727A0E6BD00C5CDC8 /* SelfiegramTests.swift */,
 			);
 			path = SelfiegramTests;
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B777149827A0E6BD00C5CDC8 /* SelfiegramTests.swift in Sources */,
+				B77714BB27A0FF8800C5CDC8 /* SelfieStoreTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
