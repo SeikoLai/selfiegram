@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation.CLLocation
 
 class Selfie: Codable {
     
@@ -37,6 +38,37 @@ class Selfie: Codable {
         // 一個新的 UUID
         self.id = UUID()
     }
+    
+    struct Coordinate: Codable, Equatable {
+        var latitude: Double
+        var longitude: Double
+        
+        // 為了符合 Equatable 協定，需要實作相等判斷方法
+        public static func == (lhs: Selfie.Coordinate, rhs: Selfie.Coordinate) -> Bool {
+            return lhs.latitude == rhs.latitude && lhs.latitude == rhs.latitude
+        }
+        
+        // 實作較輕量的結構，用來儲存、載入並取得CLLocation
+        var location: CLLocation {
+            get {
+                return CLLocation(latitude: self.latitude,
+                                  longitude: self.longitude)
+            }
+            set {
+                self.latitude = newValue.coordinate.latitude
+                self.longitude = newValue.coordinate.longitude
+            }
+        }
+        
+        // 使用 CLLocation 初始
+        init(location: CLLocation) {
+            self.latitude = location.coordinate.latitude
+            self.longitude = location.coordinate.longitude
+        }
+    }
+    
+    // 拍攝自拍照的地點
+    var position: Coordinate?
 }
 
 enum SelfieStoreError: Error {

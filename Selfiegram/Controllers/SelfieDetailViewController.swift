@@ -6,12 +6,35 @@
 //
 
 import UIKit
+import MapKit
 
 class SelfieDetailViewController: UIViewController {
 
     @IBOutlet weak var selfieNameField: UITextField!
     @IBOutlet weak var deteCreatedLabel: UILabel!
     @IBOutlet weak var selfieImageView: UIImageView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBAction func expandMap(_ sender: Any) {
+        // 如果有座標資訊才配置地圖並且放置大頭針
+        if let coordinate = self.selfie?.position?.location {
+            // 設定地圖的配置
+            let options = [
+                MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: coordinate.coordinate),
+                MKLaunchOptionsMapTypeKey: NSNumber(value: MKMapType.mutedStandard.rawValue)
+            ]
+            
+            // 建立大頭針物件
+            let placemark = MKPlacemark(
+                coordinate: coordinate.coordinate,
+                addressDictionary: nil)
+            
+            // 建立大頭針所需內容物件
+            let item = MKMapItem(placemark: placemark)
+            item.name = selfie?.title
+            item.openInMaps(launchOptions: options)
+        }
+    }
+    
     
     var selfie: Selfie? {
         didSet {
@@ -45,6 +68,11 @@ class SelfieDetailViewController: UIViewController {
         selfieNameField.text = selfie.title
         selfieImageView.image = selfie.image
         deteCreatedLabel.text = dateFormatter.string(from: selfie.created)
+        
+        if let position = selfie.position {
+            self.mapView.setCenter(position.location.coordinate, animated: false)
+            mapView.isHidden = false
+        }
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {

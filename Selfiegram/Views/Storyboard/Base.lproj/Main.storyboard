@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Selfie Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJ2-hb-Xd6">
-                                <rect key="frame" x="16" y="104" width="382" height="30"/>
+                                <rect key="frame" x="91" y="104" width="307" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jb6-2G-a7b"/>
                                 </constraints>
@@ -45,7 +45,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4a-AY-PH2">
-                                <rect key="frame" x="16" y="150" width="382" height="21"/>
+                                <rect key="frame" x="91" y="150" width="307" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="M2q-aa-pD0"/>
                                 </constraints>
@@ -56,6 +56,17 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zFz-Mn-dXG">
                                 <rect key="frame" x="16" y="179" width="382" height="667"/>
                             </imageView>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="mutedStandard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGb-Kj-ko3">
+                                <rect key="frame" x="16" y="104" width="67" height="67"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="DLT-gM-Oe6"/>
+                                    <constraint firstAttribute="height" constant="67" id="mPR-b4-LpT"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ch5-Ux-tVs" appends="YES" id="urb-2c-5aN"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="puV-Lj-9Jw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,23 +74,31 @@
                             <constraint firstItem="puV-Lj-9Jw" firstAttribute="bottom" secondItem="zFz-Mn-dXG" secondAttribute="bottom" constant="16" id="0Dq-uY-LAy"/>
                             <constraint firstItem="puV-Lj-9Jw" firstAttribute="trailing" secondItem="J4a-AY-PH2" secondAttribute="trailing" constant="16" id="41R-GI-vrO"/>
                             <constraint firstItem="zFz-Mn-dXG" firstAttribute="leading" secondItem="puV-Lj-9Jw" secondAttribute="leading" constant="16" id="49m-OD-1hB"/>
+                            <constraint firstItem="MJ2-hb-Xd6" firstAttribute="leading" secondItem="MGb-Kj-ko3" secondAttribute="trailing" constant="8" id="DGz-s6-pUa"/>
                             <constraint firstItem="MJ2-hb-Xd6" firstAttribute="top" secondItem="puV-Lj-9Jw" secondAttribute="top" constant="16" id="Dx8-kG-fgR"/>
-                            <constraint firstItem="zFz-Mn-dXG" firstAttribute="top" secondItem="J4a-AY-PH2" secondAttribute="bottom" constant="8" id="EWa-HJ-jna"/>
                             <constraint firstItem="puV-Lj-9Jw" firstAttribute="trailing" secondItem="zFz-Mn-dXG" secondAttribute="trailing" constant="16" id="IwI-Wc-vve"/>
+                            <constraint firstItem="J4a-AY-PH2" firstAttribute="leading" secondItem="MGb-Kj-ko3" secondAttribute="trailing" constant="8" id="Pcq-3K-yhW"/>
+                            <constraint firstItem="zFz-Mn-dXG" firstAttribute="top" secondItem="MGb-Kj-ko3" secondAttribute="bottom" constant="8" id="SvJ-rv-6Zs"/>
                             <constraint firstItem="puV-Lj-9Jw" firstAttribute="trailing" secondItem="MJ2-hb-Xd6" secondAttribute="trailing" constant="16" id="eFU-HK-1N8"/>
                             <constraint firstItem="J4a-AY-PH2" firstAttribute="top" secondItem="MJ2-hb-Xd6" secondAttribute="bottom" constant="16" id="iqb-Vw-1jg"/>
-                            <constraint firstItem="MJ2-hb-Xd6" firstAttribute="leading" secondItem="puV-Lj-9Jw" secondAttribute="leading" constant="16" id="ixp-kT-h1a"/>
-                            <constraint firstItem="J4a-AY-PH2" firstAttribute="leading" secondItem="puV-Lj-9Jw" secondAttribute="leading" constant="16" id="lAe-KH-0xL"/>
+                            <constraint firstItem="MGb-Kj-ko3" firstAttribute="leading" secondItem="puV-Lj-9Jw" secondAttribute="leading" constant="16" id="mDK-57-Xdq"/>
+                            <constraint firstItem="MGb-Kj-ko3" firstAttribute="top" secondItem="puV-Lj-9Jw" secondAttribute="top" constant="16" id="sQs-Zm-qaw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Selfie" id="Ldj-Mc-wVS"/>
                     <connections>
                         <outlet property="deteCreatedLabel" destination="J4a-AY-PH2" id="lzM-6p-Tka"/>
+                        <outlet property="mapView" destination="MGb-Kj-ko3" id="aDw-sz-v1S"/>
                         <outlet property="selfieImageView" destination="zFz-Mn-dXG" id="hLw-UJ-ScW"/>
                         <outlet property="selfieNameField" destination="MJ2-hb-Xd6" id="Ucb-2r-jQc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1T-HE-t3p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ch5-Ux-tVs">
+                    <connections>
+                        <action selector="expandMap:" destination="L6P-zF-Bai" id="xHD-ci-gge"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2761" y="354"/>
         </scene>

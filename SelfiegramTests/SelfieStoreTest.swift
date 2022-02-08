@@ -8,6 +8,7 @@
 import XCTest
 @testable import Selfiegram
 import UIKit
+import CoreLocation
 
 class SelfieStoreTest: XCTestCase {
     
@@ -34,6 +35,33 @@ class SelfieStoreTest: XCTestCase {
         // 回傳該圖片
         // (!表示必須成功得到一張圖片，否則會當掉)
         return UIGraphicsGetImageFromCurrentImageContext()!
+    }
+    
+    func testLocationSelfie() {
+        // 東京都廳的地點資訊 35.6890864, 139.6897425
+        let location = CLLocation(latitude: 35.6890864, longitude: 139.6897425)
+        
+        // 建立一個帶有圖片的新自拍照
+        let newSelfie = Selfie(title: "Tokyo Metropolitan Government Building Selfie")
+        let newImage = createImage(text: "🇯🇵")
+        newSelfie.image = newImage
+        
+        // 將地點資訊儲存在自拍照中
+        newSelfie.position = Selfie.Coordinate(location: location)
+        
+        // 將帶有地點的自拍照儲存起來
+        do {
+            try SelfieStore.shared.save(selfie: newSelfie)
+        }
+        catch {
+            XCTFail("failed to save the location selfie")
+        }
+        
+        // 從儲存的自拍清單中取出自拍照
+        let loadedSelfie = SelfieStore.shared.load(id: newSelfie.id)
+        
+        XCTAssertNotNil(loadedSelfie?.position, "Loaded selfie shouldn't be nil")
+        XCTAssertEqual(newSelfie.position, loadedSelfie?.position, "The position should be equal")
     }
     
     func testCreatingSelfie() {

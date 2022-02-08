@@ -6,8 +6,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SelfieListViewController: UITableViewController {
+    
+    // 儲存 Core Location 找出的最新地點
+    var lastLocation: CLLocation?
+    
+    let locationManager = CLLocationManager()
     
     // 用來製作標籤“1 分鐘以前”
     let timeIntervalFormatter: DateComponentsFormatter = {
@@ -22,36 +28,23 @@ class SelfieListViewController: UITableViewController {
     
     var detailViewController: SelfieDetailViewController?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // 建立自拍的按鈕
-        let addSelfieButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewSelfie))
-        
-        // 將自拍按鈕放到 navigation bar 的右邊
-        navigationItem.rightBarButtonItem = addSelfieButton
-        
-        // 從 selfie store 載入自拍清單
-        do {
-            // 取得圖片清單，用日期排序（從新到舊）
-            selfies = try SelfieStore.shared.listSelfies().sorted(by: {$0.created > $1.created} )
-        }
-        catch let error {
-            showError(message: "Failed to load selfies: \(error.localizedDescription)")
-        }
-        
-        if let split = splitViewController {
-            let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count - 1] as? UINavigationController)?.topViewController as? SelfieDetailViewController
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // 重新載入所有 table view 中的資料
-        tableView.reloadData()
-    }
-    
     @objc func createNewSelfie() {
+        // 清掉上次的地點，這樣下張圖片才不會誤用已過期的地點資訊
+        lastLocation = nil
+        
+        // 處理授權狀態
+        switch locationManager.authorizationStatus {
+            case .notDetermined, .denied, .restricted:
+                // 可能沒有取得授權，或使用者根本無法使用地點服務
+                // 無法確認是否得到授權，所以要求授權
+                locationManager.requestWhenInUseAuthorization()
+            default:
+                // 已經取得授權，不處理任何事情
+                break
+        }
+        // 要求地點更新
+        locationManager.requestLocation()
+        
         // 建立影像選擇棄
         let imagePicker = UIImagePickerController()
         
@@ -105,6 +98,40 @@ class SelfieListViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // 建立自拍的按鈕
+        let addSelfieButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewSelfie))
+        
+        // 將自拍按鈕放到 navigation bar 的右邊
+        navigationItem.rightBarButtonItem = addSelfieButton
+
+        // 從 selfie store 載入自拍清單
+        do {
+            // 取得圖片清單，用日期排序（從新到舊）
+            selfies = try SelfieStore.shared.listSelfies().sorted(by: {$0.created > $1.created} )
+        }
+        catch let error {
+            showError(message: "Failed to load selfies: \(error.localizedDescription)")
+        }
+        
+        if let split = splitViewController {
+            let controllers = split.viewControllers
+            detailViewController = (controllers[controllers.count - 1] as? UINavigationController)?.topViewController as? SelfieDetailViewController
+        }
+        
+        // 為了要在收到最新座標後處理事情，將 CLLocationManager 的 delegate 設成自己
+        self.locationManager.delegate = self
+        // 設定座標精準度為 10 公尺
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // 重新載入所有 table view 中的資料
+        tableView.reloadData()
     }
     
     // MARK: - UITableViewDataSource
@@ -211,6 +238,12 @@ extension SelfieListViewController: UIImagePickerControllerDelegate {
         // 放入圖片
         newSelfie.image = image
         
+        // 檢查地點是否存在
+        if let location = self.lastLocation {
+            // 將地點轉為 Coordinate 型態後存在自拍照
+            newSelfie.position = Selfie.Coordinate(location: location)
+        }
+        
         // 試著儲存照片
         do {
             try SelfieStore.shared.save(selfie: newSelfie)
@@ -230,4 +263,18 @@ extension SelfieListViewController: UIImagePickerControllerDelegate {
 
 // MARK: UINavigationControllerDelegate
 extension SelfieListViewController: UINavigationControllerDelegate {
+}
+
+// MARK: CLLocationManagerDelegate
+extension SelfieListViewController: CLLocationManagerDelegate {
+    
+    // 取得地點後被呼叫
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+         self.lastLocation = locations.last
+    }
+    
+    // 發生錯誤時被呼叫
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        showError(message: error.localizedDescription)
+    }
 }

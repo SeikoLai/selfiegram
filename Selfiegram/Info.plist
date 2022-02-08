@@ -25,5 +25,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We&apos;ll use your location to add location info to your selfies</string>
 </dict>
 </plist>
