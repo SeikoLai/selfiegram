@@ -98,14 +98,34 @@ class SelfieListViewController: UITableViewController {
         // 取得自拍照建立時間
         let interval = timeIntervalFormatter.string(from: selfie.created, to: Date())
         
-        // 設定 cell 的主標籤
-        cell.textLabel?.text = selfie.title
-        
-        // 設定多久以前拍的子標籤
-        cell.detailTextLabel?.text = interval != nil ? "\(interval!) ago" : nil
-        
-        // 設定 cell 左側的圖示
-        cell.imageView?.image = selfie.image
+//        if #available(iOS 14.0, *) {
+//            // iOS 14 改用 UIListContentConfiguration 設定 cell 樣式
+//            var content = cell.defaultContentConfiguration()
+//
+//            // 設定 cell 的主標籤
+//            content.text = selfie.title
+//
+//            // 設定多久以前拍的子標籤
+//            if interval != nil {
+//                content.secondaryText = "\(interval!) ago"
+//            }
+//
+//            // 設定 cell 左側的圖示
+//            content.image = selfie.image
+//
+//            // 設定 cell 配置檔
+//            cell.contentConfiguration = content
+//        }
+//        else {
+            // 設定 cell 的主標籤
+            cell.textLabel?.text = selfie.title
+            
+            // 設定多久以前拍的子標籤
+            cell.detailTextLabel?.text = interval != nil ? "\(interval!) ago" : nil
+            
+            // 設定 cell 左側的圖示
+            cell.imageView?.image = selfie.image
+//        }
         
         return cell
     }
