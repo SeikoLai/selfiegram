@@ -9,6 +9,14 @@ import UIKit
 
 class SelfieListViewController: UITableViewController {
     
+    // 用來製作標籤“1 分鐘以前”
+    let timeIntervalFormatter: DateComponentsFormatter = {
+       let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .spellOut
+        formatter.maximumUnitCount = 1
+        return formatter
+    }()
+    
     // 我們要顯示的圖片物件清單
     var selfies: [Selfie] = []
     
@@ -52,11 +60,42 @@ class SelfieListViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // 從 table view 取得 cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
+        // 取得自拍照並用來設定 cell
         let selfie = selfies[indexPath.row]
-        cell.textLabel?.text = selfie.title
-
+        
+        let interval = timeIntervalFormatter.string(from: selfie.created, to: Date())
+        
+        if #available(iOS 14.0, *) {
+            // iOS 14 改用 UIListContentConfiguration 設定 cell 樣式
+            var content = UIListContentConfiguration.subtitleCell()
+            
+            // 設定 cell 的主標籤
+            content.text = selfie.title
+            
+            // 設定多久以前拍的子標籤
+            if interval != nil {
+                content.secondaryText = "\(interval!) ago"
+            }
+            
+            // 設定 cell 左側的圖示
+            content.image = selfie.image
+            
+            cell.contentConfiguration = content
+        }
+        else {
+            // 設定 cell 的主標籤
+            cell.textLabel?.text = selfie.title
+            
+            // 設定多久以前拍的子標籤
+            cell.detailTextLabel?.text = interval != nil ? "\(interval!) ago" : nil
+            
+            // 設定 cell 左側的圖示
+            cell.imageView?.image = selfie.image
+        }
+        
         return cell
     }
 }
