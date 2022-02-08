@@ -58,7 +58,6 @@ class SelfieListViewController: UITableViewController {
         return selfies.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 從 table view 取得 cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -66,6 +65,7 @@ class SelfieListViewController: UITableViewController {
         // 取得自拍照並用來設定 cell
         let selfie = selfies[indexPath.row]
         
+        // 取得自拍照建立時間
         let interval = timeIntervalFormatter.string(from: selfie.created, to: Date())
         
         if #available(iOS 14.0, *) {
@@ -83,6 +83,7 @@ class SelfieListViewController: UITableViewController {
             // 設定 cell 左側的圖示
             content.image = selfie.image
             
+            // 設定 cell 配置檔
             cell.contentConfiguration = content
         }
         else {
@@ -97,5 +98,33 @@ class SelfieListViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // 如果發生編輯事件是刪除，執行刪除的邏輯
+        if editingStyle == .delete {
+            
+            // 從 selfies 取得要刪除的物件
+            let selfieToRemove = selfies[indexPath.row]
+            
+            // 試著刪除自拍照
+            do {
+                try SelfieStore.shared.delete(selfie: selfieToRemove)
+                
+                // 從 selfies 刪除該張自拍照
+                selfies.remove(at: indexPath.row)
+                
+                // 從 table view 中刪除該 cell
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            catch {
+                let title = selfieToRemove.title
+                showError(message: "Failed to delete \(title)")
+            }
+        }
     }
 }
