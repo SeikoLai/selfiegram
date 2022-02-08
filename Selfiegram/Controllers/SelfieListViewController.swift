@@ -11,7 +11,7 @@ class SelfieListViewController: UITableViewController {
     
     // 用來製作標籤“1 分鐘以前”
     let timeIntervalFormatter: DateComponentsFormatter = {
-       let formatter = DateComponentsFormatter()
+        let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .spellOut
         formatter.maximumUnitCount = 1
         return formatter
@@ -20,11 +20,17 @@ class SelfieListViewController: UITableViewController {
     // 我們要顯示的圖片物件清單
     var selfies: [Selfie] = []
     
-   var detailViewController: DetailViewController?
-
+    var detailViewController: DetailViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // 建立自拍的按鈕
+        let addSelfieButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewSelfie))
+        
+        // 將自拍按鈕放到 navigation bar 的右邊
+        navigationItem.rightBarButtonItem = addSelfieButton
+        
         // 從 selfie store 載入自拍清單
         do {
             // 取得圖片清單，用日期排序（從新到舊）
@@ -40,6 +46,30 @@ class SelfieListViewController: UITableViewController {
         }
     }
     
+    @objc func createNewSelfie() {
+        // 建立影像選擇棄
+        let imagePicker = UIImagePickerController()
+        
+        // 如果相機可以使用，就用；否則使用相片庫
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            
+            // 如果前置鏡頭可以使用，那就用前置鏡頭
+            if UIImagePickerController.isCameraDeviceAvailable(.front) {
+                imagePicker.cameraDevice = .front
+            }
+        }
+        else {
+            imagePicker.sourceType = .photoLibrary
+        }
+        
+        // 我們想要這個物件在使用者拍好照片以後收到通知，需要設定 delegate
+        imagePicker.delegate = self
+        
+        // 顯示影像選擇器
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     func showError(message: String) {
         // 建立一個 alert controller，初始化時傳入我們收到的訊息
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -52,50 +82,30 @@ class SelfieListViewController: UITableViewController {
         // 顯示警示和訊息
         self.present(alert, animated: true, completion: nil)
     }
-
-    // MARK: - Table view data source
+    
+    // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selfies.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 從 table view 取得 cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
+        
         // 取得自拍照並用來設定 cell
         let selfie = selfies[indexPath.row]
         
         // 取得自拍照建立時間
         let interval = timeIntervalFormatter.string(from: selfie.created, to: Date())
         
-        if #available(iOS 14.0, *) {
-            // iOS 14 改用 UIListContentConfiguration 設定 cell 樣式
-            var content = UIListContentConfiguration.subtitleCell()
-            
-            // 設定 cell 的主標籤
-            content.text = selfie.title
-            
-            // 設定多久以前拍的子標籤
-            if interval != nil {
-                content.secondaryText = "\(interval!) ago"
-            }
-            
-            // 設定 cell 左側的圖示
-            content.image = selfie.image
-            
-            // 設定 cell 配置檔
-            cell.contentConfiguration = content
-        }
-        else {
-            // 設定 cell 的主標籤
-            cell.textLabel?.text = selfie.title
-            
-            // 設定多久以前拍的子標籤
-            cell.detailTextLabel?.text = interval != nil ? "\(interval!) ago" : nil
-            
-            // 設定 cell 左側的圖示
-            cell.imageView?.image = selfie.image
-        }
+        // 設定 cell 的主標籤
+        cell.textLabel?.text = selfie.title
+        
+        // 設定多久以前拍的子標籤
+        cell.detailTextLabel?.text = interval != nil ? "\(interval!) ago" : nil
+        
+        // 設定 cell 左側的圖示
+        cell.imageView?.image = selfie.image
         
         return cell
     }
@@ -127,4 +137,54 @@ class SelfieListViewController: UITableViewController {
             }
         }
     }
+}
+
+// MARK: UIImagePickerControllerDelegate
+extension SelfieListViewController: UIImagePickerControllerDelegate {
+    // 當使用者取消選取圖片時呼叫
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // 當使用者完成一張圖片時呼叫
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage ?? info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            showError(message: "Couldn't get a picture from the image picker!")
+            return
+        }
+        
+        self.newSelfieTaken(image: image)
+        
+        // 關閉 picker
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // 使用者選完一張照片後呼叫
+    func newSelfieTaken(image: UIImage) {
+        // 建立一張自拍照
+        let newSelfie = Selfie(title: "New Selfie")
+        
+        // 放入圖片
+        newSelfie.image = image
+        
+        // 試著儲存照片
+        do {
+            try SelfieStore.shared.save(selfie: newSelfie)
+        }
+        catch let error {
+            showError(message: "Can't save photo: \(error.localizedDescription)")
+            return
+        }
+        
+        // 將自拍照插入 view controller 清單中
+        selfies.insert(newSelfie, at: 0)
+        
+        // 更新 table view 以顯示新的自拍照
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+    }
+}
+
+// MARK: UINavigationControllerDelegate
+extension SelfieListViewController: UINavigationControllerDelegate {
+    
 }
