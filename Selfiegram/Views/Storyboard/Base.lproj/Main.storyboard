@@ -28,14 +28,56 @@
         <!--SelfieDetail-->
         <scene sceneID="fsH-OU-G83">
             <objects>
-                <viewController title="SelfieDetail" id="L6P-zF-Bai" customClass="DetailViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SelfieDetail" id="L6P-zF-Bai" customClass="SelfieDetailViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SiD-LQ-PMf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Selfie Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJ2-hb-Xd6">
+                                <rect key="frame" x="16" y="104" width="382" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jb6-2G-a7b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="L6P-zF-Bai" eventType="primaryActionTriggered" id="X7y-jU-hjA"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4a-AY-PH2">
+                                <rect key="frame" x="16" y="150" width="382" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="M2q-aa-pD0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zFz-Mn-dXG">
+                                <rect key="frame" x="16" y="179" width="382" height="667"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="puV-Lj-9Jw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="puV-Lj-9Jw" firstAttribute="bottom" secondItem="zFz-Mn-dXG" secondAttribute="bottom" constant="16" id="0Dq-uY-LAy"/>
+                            <constraint firstItem="puV-Lj-9Jw" firstAttribute="trailing" secondItem="J4a-AY-PH2" secondAttribute="trailing" constant="16" id="41R-GI-vrO"/>
+                            <constraint firstItem="zFz-Mn-dXG" firstAttribute="leading" secondItem="puV-Lj-9Jw" secondAttribute="leading" constant="16" id="49m-OD-1hB"/>
+                            <constraint firstItem="MJ2-hb-Xd6" firstAttribute="top" secondItem="puV-Lj-9Jw" secondAttribute="top" constant="16" id="Dx8-kG-fgR"/>
+                            <constraint firstItem="zFz-Mn-dXG" firstAttribute="top" secondItem="J4a-AY-PH2" secondAttribute="bottom" constant="8" id="EWa-HJ-jna"/>
+                            <constraint firstItem="puV-Lj-9Jw" firstAttribute="trailing" secondItem="zFz-Mn-dXG" secondAttribute="trailing" constant="16" id="IwI-Wc-vve"/>
+                            <constraint firstItem="puV-Lj-9Jw" firstAttribute="trailing" secondItem="MJ2-hb-Xd6" secondAttribute="trailing" constant="16" id="eFU-HK-1N8"/>
+                            <constraint firstItem="J4a-AY-PH2" firstAttribute="top" secondItem="MJ2-hb-Xd6" secondAttribute="bottom" constant="16" id="iqb-Vw-1jg"/>
+                            <constraint firstItem="MJ2-hb-Xd6" firstAttribute="leading" secondItem="puV-Lj-9Jw" secondAttribute="leading" constant="16" id="ixp-kT-h1a"/>
+                            <constraint firstItem="J4a-AY-PH2" firstAttribute="leading" secondItem="puV-Lj-9Jw" secondAttribute="leading" constant="16" id="lAe-KH-0xL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Selfie" id="Ldj-Mc-wVS"/>
+                    <connections>
+                        <outlet property="deteCreatedLabel" destination="J4a-AY-PH2" id="lzM-6p-Tka"/>
+                        <outlet property="selfieImageView" destination="zFz-Mn-dXG" id="hLw-UJ-ScW"/>
+                        <outlet property="selfieNameField" destination="MJ2-hb-Xd6" id="Ucb-2r-jQc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1T-HE-t3p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +86,7 @@
         <!--SelfiesList-->
         <scene sceneID="gqN-du-Stl">
             <objects>
-                <tableViewController title="SelfiesList" clearsSelectionOnViewWillAppear="NO" id="SXb-m5-RWR" customClass="SelfieListViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="SelfiesList" id="SXb-m5-RWR" customClass="SelfieListViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hEK-hX-ykH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,6 +115,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="cGf-RX-aFg" kind="show" identifier="showDetail" id="afr-ql-ndH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -81,9 +126,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Selfies" id="eeh-M6-Kvn"/>
-                    <connections>
-                        <segue destination="cGf-RX-aFg" kind="show" id="iJJ-Cj-946"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UY3-s6-C3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -116,11 +158,11 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1B-fA-YLa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="31"/>
+            <point key="canvasLocation" x="852" y="-114"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xwh-Hw-Qvo"/>
+        <segue reference="afr-ql-ndH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

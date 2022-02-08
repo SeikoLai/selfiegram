@@ -20,7 +20,7 @@ class SelfieListViewController: UITableViewController {
     // 我們要顯示的圖片物件清單
     var selfies: [Selfie] = []
     
-    var detailViewController: DetailViewController?
+    var detailViewController: SelfieDetailViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,13 @@ class SelfieListViewController: UITableViewController {
         
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count - 1] as? UINavigationController)?.topViewController as? DetailViewController
+            detailViewController = (controllers[controllers.count - 1] as? UINavigationController)?.topViewController as? SelfieDetailViewController
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // 重新載入所有 table view 中的資料
+        tableView.reloadData()
     }
     
     @objc func createNewSelfie() {
@@ -81,6 +86,25 @@ class SelfieListViewController: UITableViewController {
         
         // 顯示警示和訊息
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    // 當我們點擊在一列上時被呼叫
+    // SelfieDetailViewController 會收到照片
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 如果是要過場到詳細頁，執行這邊邏輯
+        if segue.identifier == "showDetail" {
+            // 取得被點擊的cell位置資訊(IndexPath)
+            if let indexPath = tableView.indexPathForSelectedRow {
+                // 利用位置資訊從 selfies 中取出 selfie
+                let selfie = selfies[indexPath.row]
+                // 檢查目標的控制器是 SelfieDetailViewController
+                if let controller = (segue.destination as? UINavigationController)?.topViewController as? SelfieDetailViewController {
+                    controller.selfie = selfie
+                    controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                    controller.navigationItem.leftItemsSupplementBackButton = true
+                }
+            }
+        }
     }
     
     // MARK: - UITableViewDataSource
@@ -206,5 +230,4 @@ extension SelfieListViewController: UIImagePickerControllerDelegate {
 
 // MARK: UINavigationControllerDelegate
 extension SelfieListViewController: UINavigationControllerDelegate {
-    
 }
