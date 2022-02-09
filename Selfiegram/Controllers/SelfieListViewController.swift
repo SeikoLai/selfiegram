@@ -32,19 +32,28 @@ class SelfieListViewController: UITableViewController {
         // 清掉上次的地點，這樣下張圖片才不會誤用已過期的地點資訊
         lastLocation = nil
         
-        // 處理授權狀態
-        switch locationManager.authorizationStatus {
-            case .notDetermined, .denied, .restricted:
-                // 可能沒有取得授權，或使用者根本無法使用地點服務
-                // 無法確認是否得到授權，所以要求授權
-                locationManager.requestWhenInUseAuthorization()
-            default:
-                // 已經取得授權，不處理任何事情
-                break
-        }
-        // 要求地點更新
-        locationManager.requestLocation()
+        let shouldGetLocation = UserDefaults.standard.bool(forKey: SettingsKey.saveLocation.rawValue)
         
+        if shouldGetLocation {
+            // 處理授權狀態
+            switch locationManager.authorizationStatus {
+                case .denied, .restricted:
+                    // 可能沒有取得授權，或使用者根本無法使用地點服務
+                    // 放棄動作
+                    return
+                case .notDetermined:
+                    // 無法確認是否得到授權，所以要求授權
+                    locationManager.requestWhenInUseAuthorization()
+                default:
+                    // 已經取得授權，不處理任何事情
+                    break
+            }
+            // 將自己設為地點管理器的 delegate
+            locationManager.delegate = self
+            
+            // 要求地點更新
+            locationManager.requestLocation()
+        }
         // 建立影像選擇棄
         let imagePicker = UIImagePickerController()
         

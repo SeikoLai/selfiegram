@@ -19,6 +19,7 @@
 		B77714BB27A0FF8800C5CDC8 /* SelfieStoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77714BA27A0FF8800C5CDC8 /* SelfieStoreTest.swift */; };
 		B777788327A158CA00575E32 /* SelfieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777788227A158CA00575E32 /* SelfieListViewController.swift */; };
 		B777788527A15AD900575E32 /* SelfieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777788427A15AD900575E32 /* SelfieDetailViewController.swift */; };
+		B7A719AD27B35CCD001046EA /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		B77714BA27A0FF8800C5CDC8 /* SelfieStoreTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelfieStoreTest.swift; path = SelfiegramTests/SelfieStoreTest.swift; sourceTree = SOURCE_ROOT; };
 		B777788227A158CA00575E32 /* SelfieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieListViewController.swift; sourceTree = "<group>"; };
 		B777788427A15AD900575E32 /* SelfieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieDetailViewController.swift; sourceTree = "<group>"; };
+		B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Selfiegram/Controllers/SettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				B777788227A158CA00575E32 /* SelfieListViewController.swift */,
 				B777788427A15AD900575E32 /* SelfieDetailViewController.swift */,
+				B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			files = (
 				B777788327A158CA00575E32 /* SelfieListViewController.swift in Sources */,
 				B77714B127A0ED4D00C5CDC8 /* SelfieStore.swift in Sources */,
+				B7A719AD27B35CCD001046EA /* SettingsTableViewController.swift in Sources */,
 				B777788527A15AD900575E32 /* SelfieDetailViewController.swift in Sources */,
 				B777148127A0E6BC00C5CDC8 /* AppDelegate.swift in Sources */,
 				B777148327A0E6BC00C5CDC8 /* SceneDelegate.swift in Sources */,
