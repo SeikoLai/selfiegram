@@ -20,6 +20,10 @@
 		B777788327A158CA00575E32 /* SelfieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777788227A158CA00575E32 /* SelfieListViewController.swift */; };
 		B777788527A15AD900575E32 /* SelfieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777788427A15AD900575E32 /* SelfieDetailViewController.swift */; };
 		B7A719AD27B35CCD001046EA /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */; };
+		B7A719B327B3890C001046EA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A719B227B3890C001046EA /* Theme.swift */; };
+		B7A719B427B38C26001046EA /* Lobster_1.3.otf in Resources */ = {isa = PBXBuildFile; fileRef = B7A719AF27B388D4001046EA /* Lobster_1.3.otf */; };
+		B7A719B527B38C26001046EA /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B7A719B127B388E2001046EA /* Quicksand-Bold.otf */; };
+		B7A719B627B38C26001046EA /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B7A719B027B388E2001046EA /* Quicksand-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		B777788227A158CA00575E32 /* SelfieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieListViewController.swift; sourceTree = "<group>"; };
 		B777788427A15AD900575E32 /* SelfieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieDetailViewController.swift; sourceTree = "<group>"; };
 		B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = Selfiegram/Controllers/SettingsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		B7A719AF27B388D4001046EA /* Lobster_1.3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lobster_1.3.otf; sourceTree = "<group>"; };
+		B7A719B027B388E2001046EA /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.otf"; sourceTree = "<group>"; };
+		B7A719B127B388E2001046EA /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
+		B7A719B227B3890C001046EA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +115,7 @@
 		B777147F27A0E6BC00C5CDC8 /* Selfiegram */ = {
 			isa = PBXGroup;
 			children = (
+				B7A719AE27B3888A001046EA /* Fonts */,
 				B777148027A0E6BC00C5CDC8 /* AppDelegate.swift */,
 				B777148227A0E6BC00C5CDC8 /* SceneDelegate.swift */,
 				B77714B927A0F60D00C5CDC8 /* Controllers */,
@@ -148,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				B77714B827A0F5F600C5CDC8 /* Storyboard */,
+				B7A719B227B3890C001046EA /* Theme.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +179,16 @@
 				B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B7A719AE27B3888A001046EA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B7A719AF27B388D4001046EA /* Lobster_1.3.otf */,
+				B7A719B127B388E2001046EA /* Quicksand-Bold.otf */,
+				B7A719B027B388E2001046EA /* Quicksand-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +295,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7A719B427B38C26001046EA /* Lobster_1.3.otf in Resources */,
+				B7A719B527B38C26001046EA /* Quicksand-Bold.otf in Resources */,
+				B7A719B627B38C26001046EA /* Quicksand-Regular.otf in Resources */,
 				B777148D27A0E6BD00C5CDC8 /* LaunchScreen.storyboard in Resources */,
 				B777148A27A0E6BD00C5CDC8 /* Assets.xcassets in Resources */,
 				B777148827A0E6BC00C5CDC8 /* Main.storyboard in Resources */,
@@ -308,6 +331,7 @@
 				B777788527A15AD900575E32 /* SelfieDetailViewController.swift in Sources */,
 				B777148127A0E6BC00C5CDC8 /* AppDelegate.swift in Sources */,
 				B777148327A0E6BC00C5CDC8 /* SceneDelegate.swift in Sources */,
+				B7A719B327B3890C001046EA /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
