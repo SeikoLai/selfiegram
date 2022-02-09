@@ -44,8 +44,10 @@ struct Theme {
             doneButtonApperance.highlighted.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
             navAppearance.doneButtonAppearance = doneButtonApperance
             
+            // 將設定好的外貌指定給 navigation bar
             UINavigationBar.appearance().standardAppearance = navAppearance
             UINavigationBar.appearance().scrollEdgeAppearance = navAppearance
+            // 改變 navigation bar 的 tintColor
             UINavigationBar.appearance().tintColor = tintColor
             
             // 設定 tool bar 外貌
