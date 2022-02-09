@@ -145,16 +145,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Selfies" id="eeh-M6-Kvn">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" style="done" id="sDm-P1-1NQ">
+                        <barButtonItem key="leftBarButtonItem" style="done" id="sDm-P1-1NQ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="47g-RX-jDs">
-                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Settings"/>
+                                <connections>
+                                    <segue destination="Gqr-3f-uan" kind="show" id="kRt-yH-6Gs"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="Gqr-3f-uan" kind="show" id="MB9-ab-dmG"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -202,6 +202,35 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9pS-kI-Xps">
+                                        <rect key="frame" x="0.0" y="88" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9pS-kI-Xps" id="8JU-pF-Od1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me at 10am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjV-Rx-5hp">
+                                                    <rect key="frame" x="20" y="11.5" width="150" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Hms-dB-jgP">
+                                                    <rect key="frame" x="343" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="remindSwitchToggled:" destination="Gqr-3f-uan" eventType="valueChanged" id="XUp-YO-sjL"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="IjV-Rx-5hp" firstAttribute="leading" secondItem="8JU-pF-Od1" secondAttribute="leadingMargin" id="AkI-p7-gQc"/>
+                                                <constraint firstItem="IjV-Rx-5hp" firstAttribute="centerY" secondItem="8JU-pF-Od1" secondAttribute="centerY" id="BKl-T6-0HS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Hms-dB-jgP" secondAttribute="trailing" constant="2" id="JQi-2D-UGZ"/>
+                                                <constraint firstItem="Hms-dB-jgP" firstAttribute="centerY" secondItem="IjV-Rx-5hp" secondAttribute="centerY" id="U8h-lr-dmv"/>
+                                                <constraint firstItem="Hms-dB-jgP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IjV-Rx-5hp" secondAttribute="trailing" constant="8" id="dRy-WZ-gBJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -213,6 +242,7 @@
                     <navigationItem key="navigationItem" id="cR2-SF-yFU"/>
                     <connections>
                         <outlet property="locationSwitch" destination="Rjn-b2-7BC" id="jH7-LY-w80"/>
+                        <outlet property="remindSwitch" destination="Hms-dB-jgP" id="5Xo-3c-dgl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9J-dS-EvU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
