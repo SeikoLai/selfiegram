@@ -194,28 +194,81 @@ class SelfieListViewController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // 如果發生編輯事件是刪除，執行刪除的邏輯
-        if editingStyle == .delete {
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        // 如果發生編輯事件是刪除，執行刪除的邏輯
+//        if editingStyle == .delete {
+//
+//            // 從 selfies 取得要刪除的物件
+//            let selfieToRemove = selfies[indexPath.row]
+//
+//            // 試著刪除自拍照
+//            do {
+//                try SelfieStore.shared.delete(selfie: selfieToRemove)
+//
+//                // 從 selfies 刪除該張自拍照
+//                selfies.remove(at: indexPath.row)
+//
+//                // 從 table view 中刪除該 cell
+//                tableView.deleteRows(at: [indexPath], with: .fade)
+//            }
+//            catch {
+//                let title = selfieToRemove.title
+//                showError(message: "Failed to delete \(title)")
+//            }
+//        }
+//    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // 建立分享的動作
+        let shareAction = UIContextualAction(style: .normal,
+                                             title: "Share",
+                                             handler: { (action, sourceView, completionHandler) in
+            // 要分享的自拍照，如果找不到就不分享並且 log 錯誤
+            guard let image = self.selfies[indexPath.row].image else {
+                self.showError(message: "Unable to share selfie without image")
+                return
+            }
             
+            // 建立分享控制器，分享自拍照
+            let activity = UIActivityViewController(activityItems: [image],
+                                                    applicationActivities: nil)
+            self.present(activity, animated: true, completion: nil)
+            
+            completionHandler(true)
+        })
+        // 指定分享按鈕的顏色
+        shareAction.backgroundColor = self.navigationController?.navigationBar.tintColor
+        
+        // 建立刪除的動作
+        let deleteAction = UIContextualAction(style: .destructive,
+                                              title: "Delete",
+                                              handler: { (action, sourceView, completionHandler) in
             // 從 selfies 取得要刪除的物件
-            let selfieToRemove = selfies[indexPath.row]
+            let selfieToRemove = self.selfies[indexPath.row]
             
             // 試著刪除自拍照
             do {
                 try SelfieStore.shared.delete(selfie: selfieToRemove)
                 
                 // 從 selfies 刪除該張自拍照
-                selfies.remove(at: indexPath.row)
+                self.selfies.remove(at: indexPath.row)
                 
                 // 從 table view 中刪除該 cell
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
             catch {
                 let title = selfieToRemove.title
-                showError(message: "Failed to delete \(title)")
+                self.showError(message: "Failed to delete \(title)")
             }
-        }
+            completionHandler(true)
+        })
+        
+        // 將分享跟刪除動作加入手勢配置檔
+        let configuration = UISwipeActionsConfiguration(actions: [shareAction, deleteAction])
+        // 關閉滑動到底觸發第一個按鈕
+        configuration.performsFirstActionWithFullSwipe = false
+        
+        return configuration
     }
 }
 

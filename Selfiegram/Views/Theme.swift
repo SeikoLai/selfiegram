@@ -26,32 +26,65 @@ struct Theme {
         
         // 建立我們要的顏色
         let tintColor = UIColor(red: 0.56, green: 0.35, blue: 0.97, alpha: 1)
-        // 將 navigation bar 的 tintColor 指定為我們要的顏色
-        UINavigationBar.appearance().tintColor = tintColor
         
-        // 取得 navigation bar 的標籤外貌，使用參數 whenContainedInInstancesOf: 取得標籤在不同狀態下的外貌
-        let navBarLabel = UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
-        // 取得 navigation bar 外貌
-        let navBar = UINavigationBar.appearance()
-        // 設定 navigation bar 佈景主題
-        navBar.titleTextAttributes = [.font: headerFont]
-        navBarLabel.font = primaryFont
-
-        // 取得標籤外貌
-        let label = UILabel.appearance()
-        // 設定 label 的佈景主題
-        label.font = primaryFont
-        
-        // 取得 navigation bar 按鈕外貌
-        let barButton = UIBarButtonItem.appearance()
-        // 設定按鈕文字的佈景主題
-        barButton.setTitleTextAttributes([.font: primaryFont], for: .normal)
-        barButton.setTitleTextAttributes([.font: primaryFont], for: .highlighted)
-        
-        // 取得按鈕標籤外貌
-        let buttonLabel = UILabel.appearance(whenContainedInInstancesOf: [UIButton.self])
-        // 設定按鈕標籤佈景主題
-        buttonLabel.font = primaryFont
+        if #available(iOS 13.0, *) {
+            let navAppearance = UINavigationBarAppearance()
+            // 設定 navigation bar 標題字體
+            navAppearance.titleTextAttributes = [.font: headerFont]
+            
+            // 設定 navigation bar 按鈕外貌
+            let buttonAppearance = UIBarButtonItemAppearance(style: .plain)
+            buttonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
+            buttonAppearance.highlighted.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
+            navAppearance.buttonAppearance = buttonAppearance
+            
+            // 設定 navigation bar 建立自拍照按鈕外貌
+            let doneButtonApperance = UIBarButtonItemAppearance(style: .done)
+            buttonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
+            doneButtonApperance.highlighted.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
+            navAppearance.doneButtonAppearance = doneButtonApperance
+            
+            UINavigationBar.appearance().standardAppearance = navAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = navAppearance
+            UINavigationBar.appearance().tintColor = tintColor
+            
+            // 設定 tool bar 外貌
+            let toolbarAppearance = UIToolbarAppearance()
+            toolbarAppearance.buttonAppearance = buttonAppearance
+            toolbarAppearance.doneButtonAppearance = doneButtonApperance
+            UIToolbar.appearance().standardAppearance = toolbarAppearance
+        }
+        else {
+            // 將 navigation bar 的 tintColor 指定為我們要的顏色
+            UINavigationBar.appearance().tintColor = tintColor
+            
+            // 取得 navigation bar 的標籤外貌，使用參數 whenContainedInInstancesOf: 取得標籤在不同狀態下的外貌
+            let navBarLabel = UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
+            // 設定 navigation bar 標籤字體
+            navBarLabel.font = primaryFont
+            
+            // 取得 navigation bar 外貌
+            let navBar = UINavigationBar.appearance()
+            // 設定 navigation bar 佈景主題
+            navBar.titleTextAttributes = [.font: headerFont]
+            
+            
+            // 取得標籤外貌
+            let label = UILabel.appearance()
+            // 設定 label 的字體
+            label.font = primaryFont
+            
+            // 取得 navigation bar 按鈕外貌
+            let barButton = UIBarButtonItem.appearance()
+            // 設定按鈕文字的字體
+            barButton.setTitleTextAttributes([.font: primaryFont], for: .normal)
+            barButton.setTitleTextAttributes([.font: primaryFont], for: .highlighted)
+            
+            // 取得按鈕標籤外貌
+            let buttonLabel = UILabel.appearance(whenContainedInInstancesOf: [UIButton.self])
+            // 設定按鈕標籤字體
+            buttonLabel.font = primaryFont
+        }
     }
 }
 

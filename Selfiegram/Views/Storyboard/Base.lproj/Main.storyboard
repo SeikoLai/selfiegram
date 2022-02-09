@@ -85,7 +85,13 @@
                             <constraint firstItem="MGb-Kj-ko3" firstAttribute="top" secondItem="puV-Lj-9Jw" secondAttribute="top" constant="16" id="sQs-Zm-qaw"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Selfie" id="Ldj-Mc-wVS"/>
+                    <navigationItem key="navigationItem" title="Selfie" id="Ldj-Mc-wVS">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="ETq-dK-a2N">
+                            <connections>
+                                <action selector="sharedSelfie:" destination="L6P-zF-Bai" id="raD-3E-fHe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="deteCreatedLabel" destination="J4a-AY-PH2" id="lzM-6p-Tka"/>
                         <outlet property="mapView" destination="MGb-Kj-ko3" id="aDw-sz-v1S"/>
@@ -145,16 +151,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Selfies" id="eeh-M6-Kvn">
-                        <barButtonItem key="leftBarButtonItem" style="done" id="sDm-P1-1NQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="47g-RX-jDs">
-                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Settings"/>
-                                <connections>
-                                    <segue destination="Gqr-3f-uan" kind="show" id="kRt-yH-6Gs"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="u11-da-SjO">
+                            <connections>
+                                <segue destination="Gqr-3f-uan" kind="show" id="vCa-ax-UGL"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>

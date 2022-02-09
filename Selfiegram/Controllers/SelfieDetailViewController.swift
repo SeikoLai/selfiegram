@@ -35,6 +35,29 @@ class SelfieDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func sharedSelfie(_ sender: Any) {
+        // 取得自拍照，如果失敗的話，跳出提示視窗
+        guard let image = self.selfie?.image else {
+            
+            // 建立一個失敗訊息的彈出視窗
+            let alert = UIAlertController(title: "Error",
+                                          message: "Unable to share selfie without an image",
+                                          preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: "OK",
+                                       style: .default,
+                                       handler: nil)
+            
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        let activity = UIActivityViewController(activityItems: [image],
+                                                applicationActivities: nil)
+        self.present(activity, animated: true, completion: nil)
+    }
     
     var selfie: Selfie? {
         didSet {
