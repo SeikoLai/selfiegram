@@ -28,7 +28,7 @@
         <!--Navigation Controller-->
         <scene sceneID="jUD-HF-0Mv">
             <objects>
-                <navigationController storyboardIdentifier="CaptureScene" id="GL6-8V-PT5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CaptureScene" modalPresentationStyle="fullScreen" id="GL6-8V-PT5" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CFV-hJ-eWN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -49,6 +49,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDQ-XA-Q8H" customClass="PreviewView" customModule="Selfiegram" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9AJ-Gd-r3U">
                                 <rect key="frame" x="0.0" y="822" width="414" height="40"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XIa-mm-9pA">
@@ -70,10 +74,6 @@
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDQ-XA-Q8H" customClass="PreviewView" customModule="Selfiegram" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7D8-Pq-38F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -357,7 +357,6 @@
                 <splitViewController allowDoubleColumnStyle="YES" id="Mrj-dG-dvs" sceneMemberID="viewController">
                     <connections>
                         <segue destination="CSb-uS-stN" kind="relationship" relationship="masterViewController" id="8mH-dl-sfd"/>
-                        <segue destination="cGf-RX-aFg" kind="relationship" relationship="detailViewController" id="xwh-Hw-Qvo"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1B-fA-YLa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -365,9 +364,6 @@
             <point key="canvasLocation" x="852" y="-114"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="afr-ql-ndH"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
