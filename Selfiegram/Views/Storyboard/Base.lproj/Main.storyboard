@@ -25,6 +25,92 @@
             </objects>
             <point key="canvasLocation" x="1848" y="354"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jUD-HF-0Mv">
+            <objects>
+                <navigationController storyboardIdentifier="CaptureScene" id="GL6-8V-PT5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CFV-hJ-eWN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wUB-rK-XtY" kind="relationship" relationship="rootViewController" id="xfd-35-S5A"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hew-vp-K7Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="923" y="1027"/>
+        </scene>
+        <!--Selfie!-->
+        <scene sceneID="bWg-sy-itN">
+            <objects>
+                <viewController id="wUB-rK-XtY" customClass="CaptureViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0y2-nn-wHm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9AJ-Gd-r3U">
+                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XIa-mm-9pA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to take a selfie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRV-j5-zeY">
+                                            <rect key="frame" x="136" y="9.5" width="142" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="IRV-j5-zeY" firstAttribute="centerY" secondItem="9AJ-Gd-r3U" secondAttribute="centerY" id="HHq-DQ-SYB"/>
+                                    <constraint firstItem="IRV-j5-zeY" firstAttribute="centerX" secondItem="9AJ-Gd-r3U" secondAttribute="centerX" id="Q7j-fw-oQP"/>
+                                    <constraint firstAttribute="height" constant="40" id="v4U-GV-GhK"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDQ-XA-Q8H" customClass="PreviewView" customModule="Selfiegram" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7D8-Pq-38F"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="7D8-Pq-38F" firstAttribute="trailing" secondItem="9AJ-Gd-r3U" secondAttribute="trailing" id="1nr-YQ-daU"/>
+                            <constraint firstItem="QDQ-XA-Q8H" firstAttribute="top" secondItem="7D8-Pq-38F" secondAttribute="top" id="UDp-e8-ay2"/>
+                            <constraint firstItem="7D8-Pq-38F" firstAttribute="bottom" secondItem="9AJ-Gd-r3U" secondAttribute="bottom" id="efB-kf-7dW"/>
+                            <constraint firstItem="7D8-Pq-38F" firstAttribute="bottom" secondItem="QDQ-XA-Q8H" secondAttribute="bottom" id="jEE-1F-vEI"/>
+                            <constraint firstItem="9AJ-Gd-r3U" firstAttribute="leading" secondItem="7D8-Pq-38F" secondAttribute="leading" id="sjT-MW-F5S"/>
+                            <constraint firstItem="7D8-Pq-38F" firstAttribute="trailing" secondItem="QDQ-XA-Q8H" secondAttribute="trailing" id="xMY-CX-QGG"/>
+                            <constraint firstItem="QDQ-XA-Q8H" firstAttribute="leading" secondItem="7D8-Pq-38F" secondAttribute="leading" id="xok-NJ-kHB"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="arx-3D-Y29" appends="YES" id="MPd-m2-HEM"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Selfie!" id="gdd-bE-IZw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="NcR-K1-U9x">
+                            <connections>
+                                <action selector="close:" destination="wUB-rK-XtY" id="EBH-Mn-jz6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cameraPreview" destination="QDQ-XA-Q8H" id="fTz-3a-wNH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NvP-0X-s6K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="arx-3D-Y29">
+                    <connections>
+                        <action selector="takeSelfie:" destination="wUB-rK-XtY" id="QUk-ap-HjC"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1848" y="1027"/>
+        </scene>
         <!--SelfieDetail-->
         <scene sceneID="fsH-OU-G83">
             <objects>

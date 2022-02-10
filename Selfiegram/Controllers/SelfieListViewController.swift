@@ -8,6 +8,8 @@
 import UIKit
 import CoreLocation
 
+let isUseUIImagePicker = false
+
 class SelfieListViewController: UITableViewController {
     
     // 儲存 Core Location 找出的最新地點
@@ -54,27 +56,50 @@ class SelfieListViewController: UITableViewController {
             // 要求地點更新
             locationManager.requestLocation()
         }
-        // 建立影像選擇棄
-        let imagePicker = UIImagePickerController()
         
-        // 如果相機可以使用，就用；否則使用相片庫
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
+        if isUseUIImagePicker {
+            // 建立影像選擇棄
+            let imagePicker = UIImagePickerController()
             
-            // 如果前置鏡頭可以使用，那就用前置鏡頭
-            if UIImagePickerController.isCameraDeviceAvailable(.front) {
-                imagePicker.cameraDevice = .front
+            // 如果相機可以使用，就用；否則使用相片庫
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePicker.sourceType = .camera
+                
+                // 如果前置鏡頭可以使用，那就用前置鏡頭
+                if UIImagePickerController.isCameraDeviceAvailable(.front) {
+                    imagePicker.cameraDevice = .front
+                }
             }
+            else {
+                imagePicker.sourceType = .photoLibrary
+            }
+            
+            // 我們想要這個物件在使用者拍好照片以後收到通知，需要設定 delegate
+            imagePicker.delegate = self
+            
+            // 顯示影像選擇器
+            self.present(imagePicker, animated: true, completion: nil)
         }
         else {
-            imagePicker.sourceType = .photoLibrary
+            // 使用識別碼(CaptureScene)找到 storyboard 實體
+            // 由於 CaptureScene 的 root 是 UINavigationController
+            // 所以可以從屬性 viewControllers 中的第一個 controller 找到我們要的 CaptureViewController
+            // 如果找不到就離開
+            guard let navigation = self.storyboard?.instantiateViewController(withIdentifier: "CaptureScene") as? UINavigationController,
+                  let capture = navigation.viewControllers.first as? CaptureViewController else {
+                      print("Failed to create the capture view controller")
+                      return
+                  }
+            
+            capture.completion = { (image: UIImage?) in
+                if let image = image {
+                    self.newSelfieTaken(image: image)
+                }
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            self.present(navigation, animated: true, completion: nil)
         }
-        
-        // 我們想要這個物件在使用者拍好照片以後收到通知，需要設定 delegate
-        imagePicker.delegate = self
-        
-        // 顯示影像選擇器
-        self.present(imagePicker, animated: true, completion: nil)
     }
     
     func showError(message: String) {

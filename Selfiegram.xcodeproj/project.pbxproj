@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71A075A27B4DC8100FDE422 /* CaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71A075927B4DC8100FDE422 /* CaptureViewController.swift */; };
 		B777148127A0E6BC00C5CDC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777148027A0E6BC00C5CDC8 /* AppDelegate.swift */; };
 		B777148327A0E6BC00C5CDC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B777148227A0E6BC00C5CDC8 /* SceneDelegate.swift */; };
 		B777148827A0E6BC00C5CDC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B777148627A0E6BC00C5CDC8 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71A075927B4DC8100FDE422 /* CaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureViewController.swift; sourceTree = "<group>"; };
 		B777147D27A0E6BC00C5CDC8 /* Selfiegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Selfiegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B777148027A0E6BC00C5CDC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B777148227A0E6BC00C5CDC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				B777788227A158CA00575E32 /* SelfieListViewController.swift */,
 				B777788427A15AD900575E32 /* SelfieDetailViewController.swift */,
 				B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */,
+				B71A075927B4DC8100FDE422 /* CaptureViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B777788327A158CA00575E32 /* SelfieListViewController.swift in Sources */,
+				B71A075A27B4DC8100FDE422 /* CaptureViewController.swift in Sources */,
 				B77714B127A0ED4D00C5CDC8 /* SelfieStore.swift in Sources */,
 				B7A719AD27B35CCD001046EA /* SettingsTableViewController.swift in Sources */,
 				B777788527A15AD900575E32 /* SelfieDetailViewController.swift in Sources */,
