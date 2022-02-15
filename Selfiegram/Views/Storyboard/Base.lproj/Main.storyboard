@@ -100,6 +100,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraPreview" destination="QDQ-XA-Q8H" id="fTz-3a-wNH"/>
+                        <segue destination="q6h-cW-bMH" kind="show" identifier="showEditing" id="cEP-iG-ndf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NvP-0X-s6K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -110,6 +111,59 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1848" y="1027"/>
+        </scene>
+        <!--Edit-->
+        <scene sceneID="1S6-JS-iKf">
+            <objects>
+                <viewController id="q6h-cW-bMH" customClass="EditingViewController" customModule="Selfiegram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pzb-Nu-MKB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uAJ-Wo-uT1">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfA-nK-H4Z">
+                                <rect key="frame" x="0.0" y="768" width="414" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="110" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FLD-Dx-O7d">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="110"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <constraints>
+                                    <constraint firstItem="FLD-Dx-O7d" firstAttribute="leading" secondItem="hfA-nK-H4Z" secondAttribute="leading" id="4PG-CB-Cjo"/>
+                                    <constraint firstAttribute="bottom" secondItem="FLD-Dx-O7d" secondAttribute="bottom" id="OAK-Tw-Mk0"/>
+                                    <constraint firstItem="FLD-Dx-O7d" firstAttribute="top" secondItem="hfA-nK-H4Z" secondAttribute="top" id="UwR-Bi-Tkh"/>
+                                    <constraint firstItem="FLD-Dx-O7d" firstAttribute="height" secondItem="hfA-nK-H4Z" secondAttribute="height" multiplier="0.859375" id="Y4P-9S-veH"/>
+                                    <constraint firstAttribute="trailing" secondItem="FLD-Dx-O7d" secondAttribute="trailing" id="pKg-qJ-pjP"/>
+                                    <constraint firstAttribute="height" constant="128" id="rm5-ln-B9C"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="mrj-fz-Dk4"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="QxG-hy-IFN"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="d0c-us-XjY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hfA-nK-H4Z" firstAttribute="leading" secondItem="pzb-Nu-MKB" secondAttribute="leading" id="79s-Cf-wb0"/>
+                            <constraint firstItem="uAJ-Wo-uT1" firstAttribute="leading" secondItem="d0c-us-XjY" secondAttribute="leading" id="9Yp-Br-36X"/>
+                            <constraint firstAttribute="bottom" secondItem="hfA-nK-H4Z" secondAttribute="bottom" id="FIw-Hx-rvU"/>
+                            <constraint firstItem="d0c-us-XjY" firstAttribute="bottom" secondItem="uAJ-Wo-uT1" secondAttribute="bottom" id="L1G-my-LU2"/>
+                            <constraint firstAttribute="trailing" secondItem="hfA-nK-H4Z" secondAttribute="trailing" id="Vuw-i0-5TC"/>
+                            <constraint firstItem="uAJ-Wo-uT1" firstAttribute="top" secondItem="d0c-us-XjY" secondAttribute="top" id="gzg-OI-blD"/>
+                            <constraint firstItem="d0c-us-XjY" firstAttribute="trailing" secondItem="uAJ-Wo-uT1" secondAttribute="trailing" id="hQ9-wN-MDa"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit" id="3DS-Vj-fbT"/>
+                    <connections>
+                        <outlet property="imageView" destination="uAJ-Wo-uT1" id="o3H-MT-hOE"/>
+                        <outlet property="optionsStackView" destination="FLD-Dx-O7d" id="uru-f8-Js4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TOX-oL-2XK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2761" y="1027"/>
         </scene>
         <!--SelfieDetail-->
         <scene sceneID="fsH-OU-G83">
@@ -172,7 +226,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Selfie" id="Ldj-Mc-wVS">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="ETq-dK-a2N">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="ETq-dK-a2N">
                             <connections>
                                 <action selector="sharedSelfie:" destination="L6P-zF-Bai" id="raD-3E-fHe"/>
                             </connections>
@@ -367,6 +421,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -27,6 +27,7 @@
 		B7A719B627B38C26001046EA /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B7A719B027B388E2001046EA /* Quicksand-Regular.otf */; };
 		B7B4EA2F27B9E1D4008EC4C5 /* OverlayStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4EA2E27B9E1D4008EC4C5 /* OverlayStore.swift */; };
 		B7B4EA3127B9F0A1008EC4C5 /* DataLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4EA3027B9F0A1008EC4C5 /* DataLoadingTests.swift */; };
+		B7B4EA3327BA2AD3008EC4C5 /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B4EA3227BA2AD3008EC4C5 /* EditingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		B7A719B227B3890C001046EA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		B7B4EA2E27B9E1D4008EC4C5 /* OverlayStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayStore.swift; sourceTree = "<group>"; };
 		B7B4EA3027B9F0A1008EC4C5 /* DataLoadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingTests.swift; sourceTree = "<group>"; };
+		B7B4EA3227BA2AD3008EC4C5 /* EditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				B777788427A15AD900575E32 /* SelfieDetailViewController.swift */,
 				B7A719AC27B35CCD001046EA /* SettingsTableViewController.swift */,
 				B71A075927B4DC8100FDE422 /* CaptureViewController.swift */,
+				B7B4EA3227BA2AD3008EC4C5 /* EditingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				B777788327A158CA00575E32 /* SelfieListViewController.swift in Sources */,
 				B71A075A27B4DC8100FDE422 /* CaptureViewController.swift in Sources */,
 				B77714B127A0ED4D00C5CDC8 /* SelfieStore.swift in Sources */,
+				B7B4EA3327BA2AD3008EC4C5 /* EditingViewController.swift in Sources */,
 				B7A719AD27B35CCD001046EA /* SettingsTableViewController.swift in Sources */,
 				B777788527A15AD900575E32 /* SelfieDetailViewController.swift in Sources */,
 				B777148127A0E6BC00C5CDC8 /* AppDelegate.swift in Sources */,

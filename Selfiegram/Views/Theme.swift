@@ -33,13 +33,13 @@ struct Theme {
             navAppearance.titleTextAttributes = [.font: headerFont]
             
             // 設定 navigation bar 按鈕外貌
-            let buttonAppearance = UIBarButtonItemAppearance(style: .plain)
+            let buttonAppearance = UIBarButtonItemAppearance()
             buttonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
             buttonAppearance.highlighted.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
             navAppearance.buttonAppearance = buttonAppearance
             
             // 設定 navigation bar 建立自拍照按鈕外貌
-            let doneButtonApperance = UIBarButtonItemAppearance(style: .done)
+            let doneButtonApperance = UIBarButtonItemAppearance()
             buttonAppearance.normal.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
             doneButtonApperance.highlighted.titleTextAttributes = [.foregroundColor: tintColor, .font: primaryFont]
             navAppearance.doneButtonAppearance = doneButtonApperance

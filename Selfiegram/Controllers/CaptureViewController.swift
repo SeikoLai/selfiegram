@@ -107,6 +107,19 @@ class CaptureViewController: UIViewController {
         self.cameraPreview?.setCameraOrientation(currentViewOrientation)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 如果畫面擷取工作不再執行狀態
+        if !self.captureSession.isRunning {
+            // 因為擷取工作需要時間準備，所以不再主線程執行（main）避免拖慢 UI 反應速度，
+            // 但是又不希望等太久，因此使用高重要性（userInitiated）狀態執行擷取工作
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.captureSession.startRunning()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -149,6 +162,25 @@ class CaptureViewController: UIViewController {
         
         super.viewDidLoad()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 如果要導轉的場景不是 EditingViewController 則結束
+        guard let destination = segue.destination as? EditingViewController else {
+            print("The destination view controller is not configured correctly.")
+            return
+        }
+        
+        // 如果圖片不存在則結束
+        guard let image = sender as? UIImage else {
+            print("Expected to receive an image")
+            return
+        }
+        
+        // 把剛抓取的圖片以及完成處理函式交給該 view controller
+        // 這裡的完成處理函式式使用者完成圖片編輯工作後執行的函式
+        destination.image = image
+        destination.completion = self.completion
+    }
 }
 
 // MARK: AVCapturePhotoCaptureDelegate
@@ -166,6 +198,10 @@ extension CaptureViewController: AVCapturePhotoCaptureDelegate {
                   return
               }
         
-        self.completion?(image)
+        // 結束影像擷取
+        self.captureSession.stopRunning()
+        
+        // 轉場到編輯頁面
+        self.performSegue(withIdentifier: "showEditing", sender: image)
     }
 }

@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 改變外貌
         Theme.apply()
         
+        // 下載疊加圖資料，並將下載後的資料放入 cache
+        OverlayManager.shared.loadOverlayAssets(refresh: true, completion: {})
+        
         return true
     }
 
